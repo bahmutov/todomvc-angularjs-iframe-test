@@ -15,7 +15,8 @@ module.exports = function (grunt) {
         'bower_components/todomvc-app-css/*',
         'bower_components/todomvc-common/*',
         'bower_components/angular/angular.js',
-        'bower_components/angular-route/angular-route.js'
+        'bower_components/angular-route/angular-route.js',
+        'bower_components/console-log-div/console-log-div.js'
       ]
     }
   });
