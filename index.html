@@ -5,11 +5,16 @@
   <meta charset="utf-8">
   <title>ng todomvc + iframe api</title>
   <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/iframe-api/dist/iframe-api.js"></script>
 </head>
 <body>
-    <h2>External site that iframes todomvc angularjs example</h2>
-
-    <iframe id="todomvc" src="todomvc.html" width="100%" height="500"></iframe>
-
+  <h2>External site that iframes todomvc angularjs example</h2>
+  <iframe id="todomvc" src="todomvc.html" width="100%" height="500"></iframe>
+  <script>
+  iframeApi().then(function (api) {
+  	console.log('received api from iframe');
+  	console.log(api);
+  });
+  </script>
 </body>
 </html>

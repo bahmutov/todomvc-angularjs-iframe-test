@@ -29,4 +29,14 @@ angular.module('todomvc', ['ngRoute'])
 			.otherwise({
 				redirectTo: '/'
 			});
+	}).run(function connectToOutside() {
+		console.log('connecting to the outside');
+		var todoApi = {
+			add: function (name) {
+				console.log('api: adding todo', name);
+			}
+		};
+		iframeApi(todoApi).then(function () {
+			console.log('sent api to external site');
+		});
 	});
