@@ -4,6 +4,32 @@ This is a fork of only the Angularjs example from TodoMvc repo [tastejs/todomvc]
 
 ![TodoMVC iframe test](todomvc-iframe.gif)
 
+```js
+function testTodos(api) {
+  api.removeAll()
+    .then(delay)
+    .then(function () {
+      api.add('foo');
+    })
+    .then(delay)
+    .then(function () {
+      api.add('bar');
+    })
+    .then(delay)
+    .then(function () {
+      api.add('baz');
+    })
+    .then(delay)
+    .then(assertTodos);
+}
+iframeApi().then(function (api) {
+  console.log('send commands to iframed TodoMVC via todoApi object');
+  testTodos(api);
+});
+```
+
+The TodoMVC is driven via [iframe-api](https://github.com/bahmutov/iframe-api) at the model layer.
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
