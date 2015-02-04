@@ -5,7 +5,8 @@
     "angular": "1.3.11",
     "todomvc-common": "~1.0.0",
     "todomvc-app-css": "~1.0.1",
-    "iframe-api": "~0.8.3"
+    "iframe-api": "~0.8.3",
+    "console-log-div": "~0.3.0"
   },
   "devDependencies": {
     "angular-mocks": "1.3.11",
