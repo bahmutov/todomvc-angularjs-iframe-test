@@ -9,14 +9,63 @@
 </head>
 <body>
   <h2>External site that iframes todomvc angularjs example</h2>
+  <button id="btn" style="display:none">Test add todos</button>
   <iframe id="todomvc" src="todomvc.html" width="100%" height="500"></iframe>
   <script>
+
+  function testAddTodos(api) {
+    console.log('testing todos using api');
+
+    function assertTodos() {
+      return api.returnAll()
+        .then(function check(todos) {
+          console.log('has', todos.length, 'todos');
+          console.table(todos);
+          console.assert(Array.isArray(todos), 'expected array of todos');
+          console.assert(todos.length === 3, 'expected 3 todos');
+        });
+    }
+
+    function delay() {
+      return new Promise(function (resolve) {
+        setTimeout(function () {
+          resolve();
+        }, 1000);
+      });
+    }
+
+    api.removeAll()
+      .then(delay)
+      .then(function () {
+        api.add('foo');
+      })
+      .then(delay)
+      .then(function () {
+        api.add('bar');
+      })
+      .then(delay)
+      .then(function () {
+        api.add('baz');
+      })
+      .then(delay)
+      .then(assertTodos);
+  }
+
+  function showTestButton(api) {
+    var btn = document.getElementById('btn');
+    btn.addEventListener('click', function () {
+      testAddTodos(api);
+    });
+    btn.style.display = '';
+  }
+
   var todoApi;
   iframeApi().then(function (api) {
-  	console.log('received api from iframe');
-  	console.log(api);
-  	todoApi = api;
-  	console.log('send commands to iframed TodoMVC via todoApi object');
+    console.log('received api from iframe');
+    console.log(api);
+    todoApi = api;
+    console.log('send commands to iframed TodoMVC via todoApi object');
+    showTestButton(api);
   });
   </script>
 </body>
