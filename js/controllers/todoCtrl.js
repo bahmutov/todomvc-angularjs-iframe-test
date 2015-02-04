@@ -29,21 +29,28 @@ angular.module('todomvc')
 				{ completed: true } : null;
 		});
 
-		$scope.addTodo = function () {
+		$scope.addTodoClicked = function () {
+			var title = $scope.newTodo.trim();
+			if (!title) {
+				return;
+			}
+			$scope.addTodoClicked(title)
+				.then(function success() {
+					$scope.newTodo = '';
+				});
+		};
+
+		$scope.addTodo = function (name) {
+			if (!name) {
+				return;
+			}
 			var newTodo = {
-				title: $scope.newTodo.trim(),
+				title: name.trim(),
 				completed: false
 			};
 
-			if (!newTodo.title) {
-				return;
-			}
-
 			$scope.saving = true;
-			store.insert(newTodo)
-				.then(function success() {
-					$scope.newTodo = '';
-				})
+			return store.insert(newTodo)
 				.finally(function () {
 					$scope.saving = false;
 				});
