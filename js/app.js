@@ -31,9 +31,16 @@ angular.module('todomvc', ['ngRoute'])
 			});
 	}).run(function connectToOutside() {
 		console.log('connecting to the outside');
+
+		function getScope() {
+			return angular.element(document.getElementById('todoapp')).scope();
+		}
+
 		var todoApi = {
 			add: function (name) {
 				console.log('api: adding todo', name);
+				getScope().addTodo(name);
+				getScope().$apply();
 			}
 		};
 		iframeApi(todoApi).then(function () {
