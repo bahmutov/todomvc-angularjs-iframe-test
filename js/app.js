@@ -41,6 +41,15 @@ angular.module('todomvc', ['ngRoute'])
 				console.log('api: adding todo', name);
 				getScope().addTodo(name);
 				getScope().$apply();
+			},
+			removeAll: function () {
+				console.log('api: removing all todos');
+				getScope().removeAll();
+				getScope().$apply();
+			},
+			returnAll: function () {
+				console.log('api: returning all todos');
+				return getScope().todos;
 			}
 		};
 		iframeApi(todoApi).then(function () {

@@ -120,6 +120,11 @@ angular.module('todomvc')
 				});
 		};
 
+		$scope.removeAll = function () {
+			$scope.markAll(true);
+			$scope.clearCompletedTodos();
+		};
+
 		$scope.clearCompletedTodos = function () {
 			store.clearCompleted();
 		};
